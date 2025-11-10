@@ -12,21 +12,23 @@ type ApiEnv struct {
 func SetupRoutes(r *gin.Engine, env *ApiEnv) {
 	api := r.Group("/api/v1")
 	{
-		// Artist routes (GET all, GET one, POST)
-		api.GET("/artists", env.GetArtists)
-		api.GET("/artists/:id", env.GetArtistByID)
+		api.POST("/signup", env.SignUp)
+		api.POST("/login", env.Login)
+
 		api.POST("/artists", env.CreateArtist)
+		api.GET("/artists", env.GetArtists)
 
-		// Album routes (GET all, GET one, POST)
-		api.GET("/albums", env.GetAlbums)
-		api.GET("/albums/:id", env.GetAlbumByID)
 		api.POST("/albums", env.CreateAlbum)
+		api.GET("/albums", env.GetAlbumsByRating) 
+		api.GET("/albums/search", env.SearchAlbums)  
+		api.GET("/albums/:id", env.GetAlbumDetails)
 
-		// Comment routes (GET for album, POST for album)
-		api.GET("/albums/:id/comments", env.GetCommentsForAlbum)
 		api.POST("/albums/:id/comments", env.CreateComment)
-		
-		// Aggregate/View route
-		api.GET("/albums/top-rated", env.GetTopRatedAlbums)
+
+		api.POST("/genres", env.CreateGenre)
+		api.GET("/genres", env.GetGenres)
+		api.POST("/albums/:id/genres", env.AddGenreToAlbum)
+
+		api.GET("/users/:username/comments", env.GetCommentsByUser)
 	}
 }
