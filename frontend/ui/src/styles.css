@@ -1,0 +1,103 @@
+body {
+  background-color: #f8f9fa;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+.modal-content-container {
+  position: relative;
+}
+
+.modal-content-container .btn-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1051;
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.login-signup-card {
+  width: 400px;
+  max-width: 90vw;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 140px);
+  gap: 12px;
+  justify-content: start;
+}
+
+.album-card {
+  transition: all 0.2s ease-in-out;
+}
+.album-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.album-grid {
+  justify-items: center;
+}
+.album-card {
+  width: 140px;
+  margin: 0 auto;
+}
+.album-card img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+.album-card .card-body {
+  padding: 0.5rem 0.5rem;
+}
+.album-card .card-title {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+.album-card .card-text {
+  font-size: 0.85rem;
+}
+
+/* Home list layout thumbnail */
+.album-thumb {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex: 0 0 64px;
+}
+.album-card .card-title a {
+  text-decoration: none;
+  color: #333;
+}
+.album-card .card-title a:hover {
+  color: #0d6efd;
+}
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #6c757d;
+}

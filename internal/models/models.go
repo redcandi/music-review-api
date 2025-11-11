@@ -2,15 +2,13 @@ package models
 
 import "time"
 
-
 type User struct {
 	ID           int       `json:"id"`
 	Username     string    `json:"username"`
 	Email        string    `json:"email"`
-	PasswordHash string    `json:"-"` 
+	PasswordHash string    `json:"-"`
 	CreatedAt    time.Time `json:"created_at"`
 }
-
 
 type Artist struct {
 	ID         int    `json:"id"`
@@ -34,20 +32,20 @@ type Genre struct {
 }
 
 type Comment struct {
-	ID           int       `json:"id"`
-	AlbumID      int       `json:"album_id"`
-	UserID       int       `json:"user_id"`
-	Rating       int       `json:"rating"`
-	CommentText  string    `json:"comment_text,omitempty"`
-	CreatedAt    time.Time `json:"created_at"`
+	ID          int       `json:"id"`
+	AlbumID     int       `json:"album_id"`
+	UserID      int       `json:"user_id"`
+	Rating      int       `json:"rating"`
+	CommentText string    `json:"comment_text,omitempty"`
+	CreatedAt   time.Time `json:"created_at"`
 
-	Username     string    `json:"username,omitempty"`
-	AlbumTitle   string    `json:"album_title,omitempty"` 
-	CoverImageURL string   `json:"cover_image_url,omitempty"`
+	Username      string `json:"username,omitempty"`
+	AlbumTitle    string `json:"album_title,omitempty"`
+	CoverImageURL string `json:"cover_image_url,omitempty"`
 }
 
 type AlbumRating struct {
-	AlbumID       int     `json:"album_id"`
+	AlbumID int `json:"album_id"`
 
 	Title         string  `json:"title"`
 	ArtistName    string  `json:"artist_name"`
@@ -56,14 +54,11 @@ type AlbumRating struct {
 	TotalComments int     `json:"total_comments"`
 }
 
-
 type SignUpInput struct {
 	Username string `json:"username" binding:"required"`
 	Email    string `json:"email" binding:"required,email"`
 	Password string `json:"password" binding:"required,min=8"`
-
 }
-
 
 type LoginInput struct {
 	Email    string `json:"email" binding:"required,email"`
@@ -75,7 +70,7 @@ type LoginResponse struct {
 }
 
 type CreateCommentInput struct {
-	Username    string `json:"username"` 
+	Username    string `json:"username"`
 	Rating      int    `json:"rating" binding:"required"`
 	CommentText string `json:"comment_text"`
 }
@@ -88,7 +83,7 @@ type CreateArtistInput struct {
 
 type CreateAlbumInput struct {
 	Title         string `json:"title" binding:"required"`
-	ReleaseDate   string `json:"release_date" binding:"required"` 
+	ReleaseDate   string `json:"release_date" binding:"required"`
 	CoverImageURL string `json:"cover_image_url"`
 	ArtistID      int    `json:"artist_id" binding:"required"`
 }

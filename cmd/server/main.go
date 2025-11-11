@@ -10,31 +10,29 @@ import (
 	"music-review-api/internal/db"
 )
 
-
-func main(){
+func main() {
 	database, err := db.InitDB()
 	if err != nil {
-		log.Fatal("Failed to connect to database:",err)
+		log.Fatal("Failed to connect to database:", err)
 	}
 	defer database.Close()
-
 
 	env := &api.ApiEnv{DB: database}
 
 	//router setup
-	r:=gin.Default()
-	
+	r := gin.Default()
+
 	r.Use(cors.New(cors.Config{
-		AllowOrigins: []string{"http://localhost:3000"},
-		AllowMethods: []string{"GET","POST","PUT","DELETE"},
-		AllowHeaders: []string{"Origin","Content-Type","Authorization"},
+		AllowOrigins:     []string{"http://localhost:3000"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		AllowCredentials: true,
 	}))
 
-	api.SetupRoutes(r,env)
+	api.SetupRoutes(r, env)
 
 	log.Println("Starting server on :8080")
-	if err := r.Run(":8080"); err != nil{
+	if err := r.Run(":8080"); err != nil {
 		log.Fatal("Failed to start server:", err)
 	}
 
