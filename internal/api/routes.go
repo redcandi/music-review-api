@@ -30,5 +30,6 @@ func SetupRoutes(r *gin.Engine, env *ApiEnv) {
 		api.POST("/albums/:id/genres", env.AddGenreToAlbum)
 
 		api.GET("/users/:username/comments", env.GetCommentsByUser)
+		api.DELETE("/users/:username", env.DeleteUser)
 	}
 }

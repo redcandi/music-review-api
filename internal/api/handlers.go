@@ -405,3 +405,28 @@ func (env *ApiEnv) fetchGenresForAlbum(albumID string) ([]models.Genre, error) {
 	}
 	return genres, nil
 }
+
+func (env *ApiEnv) DeleteUser(c *gin.Context) {
+	username := c.Param("username")
+
+	query := "DELETE FROM users WHERE username = ?"
+
+	res, err := env.DB.Exec(query, username)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to delete user"})
+		return
+	}
+
+	rowsAffected, err := res.RowsAffected()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to check deletion status"})
+		return
+	}
+
+	if rowsAffected == 0 {
+		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "User and all their comments deleted"})
+}
